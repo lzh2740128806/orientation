@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no minimal-ui">
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+		html,body{
+			margin: 0;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+		}
+		#wrap div{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: #000;
+			font-size: 45px;
+			color: #fff;
+		}
+	
+	</style>
+</head>
+<body>
+	<div id="wrap">
+		<div></div>
+	</div>
+	<script>
+		function ori(){
+			var p = document.querySelector('#wrap div');
+			var ww = window.innerWidth;
+			var wh = window.innerHeight;
+
+			var o = window.orientation;
+
+			if(o == 0){
+				p.style.width = wh + 'px';
+				p.style.height = ww + 'px';
+				p.style.marginTop = (wh-ww)/2 + 'px';
+				p.style.marginLeft = (ww-wh)/2 + 'px';
+				p.style.transform = 'rotate(90deg)';
+			}else{
+				p.style.width = ww + 'px';
+				p.style.height = wh + 'px';
+				p.style.marginTop = 0 + 'px';
+				p.style.marginLeft = 0 + 'px';
+				p.style.transform = 'rotate(0)';
+			}
+			p.innerHTML = ww+':'+wh+':'+o;
+		}
+		ori();
+		window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize",function(){
+			setTimeout(ori,150);
+		});
+	</script>
+</body>
+</html>
